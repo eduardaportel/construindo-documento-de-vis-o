@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ID=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <style>
+        body {
+         font-family: Arial, sans-serif;
+         display: flex;
+         justify-content: center;
+         height: 100vh; 
+         margin: 0;
+         background-color: #f0f0f0;
+        }
+    
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .field-container {
+            margin-bottom: 10px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+    
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    
+        button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+        }
+    
+        button:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Campos de texto e rótulos para inserção de números -->
+        <div id="form-container"></div>
+        <button id="submit-btn">Entra</button>
+    </div>
+
+    <script>
+        // Classe que representa a interface de entrada de números
+        class NumberInputForm {
+            constructor(containerId) {
+                this.container = document.getElementById(containerId);
+                this.numbers = [];
+                this.createForm();
+            }
+
+            // Método para criar o formulário com campos de entrada de números
+            createForm() {
+                for (let i = 0; i < 8; i++) {
+                    let fieldContainer = document.createElement('div');
+                    fieldContainer.className = 'field-container';
+
+                    let label = document.createElement('label');
+                    label.innerText = `Número ${i + 1}:`;
+
+                    let input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = `number${i}`;
+                    input.placeholder = 'Digite um número inteiro';
+
+                    fieldContainer.appendChild(label);
+                    fieldContainer.appendChild(input);
+                    this.container.appendChild(fieldContainer);
+                }
+            }
+
+            // Método para coletar os valores inseridos nos campos de entrada
+            collectNumbers() {
+                this.numbers = [];
+                for (let i = 0; i < 8; i++) {
+                    let value = document.getElementById(`number${i}`).value;
+                    if (isNaN(value) || value.trim() === '') {
+                        alert(`Por favor, insira um número inteiro válido no campo ${i + 1}.`);
+                        return false;
+                    }
+                    this.numbers.push(parseInt(value));
+                }
+                return true;
+            }
+        }
+
+        // Inicializando o formulário e configurando o botão "Entra"
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = new NumberInputForm('form-container');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            submitBtn.addEventListener('click', () => {
+                if (form.collectNumbers()) {
+                    alert('Números inseridos: ' + form.numbers.join(', '));
+                }
+            });
+        });
+    </script>
+</body>
+
+
+</html>
