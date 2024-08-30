@@ -57,13 +57,13 @@
 </head>
 <body>
     <div class="container">
-        <!-- Campos de texto e rótulos para inserção de números -->
+        <!-- campos de texto e rótulos para inserção de números -->
         <div id="form-container"></div>
         <button id="submit-btn">Entra</button>
     </div>
 
     <script>
-        // Classe que representa a interface de entrada de números
+        // classe que representa a interface de entrada de números
         class NumberInputForm {
             constructor(containerId) {
                 this.container = document.getElementById(containerId);
@@ -71,7 +71,7 @@
                 this.createForm();
             }
 
-            // Método para criar o formulário com campos de entrada de números
+            // método para criar o formulário com campos de entrada de números
             createForm() {
                 for (let i = 0; i < 8; i++) {
                     let fieldContainer = document.createElement('div');
@@ -91,7 +91,7 @@
                 }
             }
 
-            // Método para coletar os valores inseridos nos campos de entrada
+            // método para coletar os valores inseridos nos campos de entrada
             collectNumbers() {
                 this.numbers = [];
                 for (let i = 0; i < 8; i++) {
@@ -106,7 +106,7 @@
             }
         }
 
-        // Inicializando o formulário e configurando o botão "Entra"
+        // inicializando o formulário e configurando o botão "Entra"
         document.addEventListener('DOMContentLoaded', () => {
             const form = new NumberInputForm('form-container');
             const submitBtn = document.getElementById('submit-btn');
