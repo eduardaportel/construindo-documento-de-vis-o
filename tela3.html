@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Busca</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .result {
+            font-size: 20px;
+            color: #007BFF;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado da Busca</h1>
+        <p id="result" class="result"></p>
+        <button onclick="window.location.href='/tela1.html'">Voltar ao Início</button>
+    </div>
+
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultContainer = document.getElementById('result');
+            const searchResult = localStorage.getItem('searchResult');
+            resultContainer.textContent = searchResult || 'Nenhum resultado encontrado.';
+        });
+    </script>
+</body>
+</html>

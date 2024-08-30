@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Número</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .field-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Busca de Número</h1>
+        <div class="field-container">
+            <label for="search-number">Buscar Número:</label>
+            <input type="text" id="search-number" placeholder="Digite um número inteiro">
+        </div>
+        <button id="search-btn">Buscar</button>
+    </div>
+
+    <script>
+        class SearchForm {
+            constructor(numbers) {
+                this.numbers = numbers;
+                this.input = document.getElementById('search-number');
+                this.searchBtn = document.getElementById('search-btn');
+                this.addEventListeners();
+            }
+
+            addEventListeners() {
+                this.searchBtn.addEventListener('click', () => this.searchNumber());
+            }
+
+            searchNumber() {
+                const searchValue = this.input.value;
+
+                if (isNaN(searchValue) || searchValue.trim() === '') {
+                    alert('Por favor, insira um número inteiro válido.');
+                    return;
+                }
+
+                const searchNumber = parseInt(searchValue);
+                const foundIndex = this.numbers.indexOf(searchNumber);
+
+                localStorage.setItem('searchResult', foundIndex !== -1 ? `Número ${searchNumber} encontrado na posição ${foundIndex + 1}.` : `Número ${searchNumber} não encontrado.`);
+
+                window.location.href = '/tela3.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedNumbers = JSON.parse(localStorage.getItem('storedNumbers')) || [];
+            new SearchForm(storedNumbers);
+        });
+    </script>
+</body>
+</html>

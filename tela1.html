@@ -2,68 +2,80 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ID=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste</title>
+    <title>Inserção de Números</title>
     <style>
         body {
-         font-family: Arial, sans-serif;
-         display: flex;
-         justify-content: center;
-         height: 100vh; 
-         margin: 0;
-         background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
         }
-    
+
         .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
         }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
         .field-container {
             margin-bottom: 10px;
+            text-align: left;
         }
-    
+
         label {
             display: block;
             margin-bottom: 5px;
-            color: #333;
+            color: #555;
         }
-    
+
         input[type="text"] {
             width: calc(100% - 12px);
-            padding: 5px;
+            padding: 8px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 16px;
         }
-    
+
         button {
-            background-color: #008CBA;
+            background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px 24px;
             font-size: 16px;
             cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
             width: 100%;
-            border-radius: 4px;
         }
-    
+
         button:hover {
-            background-color: #005f73;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Campos de texto e rótulos para inserção de números -->
+        <h1>Inserção de Números</h1>
         <div id="form-container"></div>
-        <button id="submit-btn">Entra</button>
+        <button id="submit-btn">Salvar e Continuar</button>
     </div>
 
     <script>
-        // Classe que representa a interface de entrada de números
         class NumberInputForm {
             constructor(containerId) {
                 this.container = document.getElementById(containerId);
@@ -71,7 +83,6 @@
                 this.createForm();
             }
 
-            // Método para criar o formulário com campos de entrada de números
             createForm() {
                 for (let i = 0; i < 8; i++) {
                     let fieldContainer = document.createElement('div');
@@ -91,7 +102,6 @@
                 }
             }
 
-            // Método para coletar os valores inseridos nos campos de entrada
             collectNumbers() {
                 this.numbers = [];
                 for (let i = 0; i < 8; i++) {
@@ -104,21 +114,28 @@
                 }
                 return true;
             }
+
+            sortNumbers() {
+                this.numbers.sort((a, b) => a - b);
+            }
+
+            storeNumbers() {
+                localStorage.setItem('storedNumbers', JSON.stringify(this.numbers));
+            }
         }
 
-        // Inicializando o formulário e configurando o botão "Entra"
         document.addEventListener('DOMContentLoaded', () => {
             const form = new NumberInputForm('form-container');
             const submitBtn = document.getElementById('submit-btn');
             
             submitBtn.addEventListener('click', () => {
                 if (form.collectNumbers()) {
-                    alert('Números inseridos: ' + form.numbers.join(', '));
+                    form.sortNumbers();
+                    form.storeNumbers();
+                    window.location.href = '/tela2.html'; 
                 }
             });
         });
     </script>
 </body>
-
-
 </html>
