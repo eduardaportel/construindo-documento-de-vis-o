@@ -76,6 +76,7 @@
     </div>
 
     <script>
+        
         class NumberInputForm {
             constructor(containerId) {
                 this.container = document.getElementById(containerId);
@@ -83,6 +84,7 @@
                 this.createForm();
             }
 
+            
             createForm() {
                 for (let i = 0; i < 8; i++) {
                     let fieldContainer = document.createElement('div');
@@ -102,6 +104,7 @@
                 }
             }
 
+            
             collectNumbers() {
                 this.numbers = [];
                 for (let i = 0; i < 8; i++) {
@@ -124,6 +127,7 @@
             }
         }
 
+        
         document.addEventListener('DOMContentLoaded', () => {
             const form = new NumberInputForm('form-container');
             const submitBtn = document.getElementById('submit-btn');
