@@ -1,4 +1,5 @@
-# construindo-documento-de-vis-o
+# Dinâmica: Construindo um Documento de Visão de Software
+
 
 Integrantes do grupo:
 Fernanda Beatriz 22.00368-0
